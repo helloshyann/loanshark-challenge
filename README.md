@@ -1,1 +1,1 @@
-# js-template
+# Loan Shark Coding Challenge
