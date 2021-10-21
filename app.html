@@ -82,7 +82,7 @@
                     <div class="card">
 
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">
+                            <h6 class="m-0 font-weight-bold">
                                 LOAN CALCULATOR
                             </h6>
                         </div>
@@ -132,17 +132,17 @@
                         <div class="col">
                             <div class="card border-left-success shadow h-100 py-2">
                                 <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1 name3">
-                                                Total Loan Amount:
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                <span id="totBal"></span>
-                                            </div>
+                                    <div class="row row-cols-1 no-gutters align-items-center">
+                                        <div class="col-md-7">
+                                            <span class="text-success text-uppercase float-md-start">
+                                                Total Loan Amount: 
+                                            </span>                                            
                                         </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                        <div class="col-md-3">
+                                            <span id="totBal" class="float-md-end"></span>
+                                        </div>
+                                        <div class="col-md-2 d-none d-md-block">
+                                            <i class="fas fa-dollar-sign fa-2x text-success float-md-end"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -155,17 +155,17 @@
                         <div class="col">
                             <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1 name3">
-                                                Term Length:
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                <span id="termMon"></span>
-                                            </div>
+                                    <div class="row row-cols-1 no-gutters align-items-center">
+                                        <div class="col-md-7">
+                                            <span class="text-primary text-uppercase float-md-start">
+                                                Term Length: 
+                                            </span>                                            
                                         </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                        <div class="col-md-3">
+                                            <span id="termMon" class="float-md-end"></span>
+                                        </div>
+                                        <div class="col-md-2 d-none d-md-block">
+                                            <i class="fas fa-calendar fa-2x text-primary float-md-end"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -178,17 +178,17 @@
                         <div class="col">
                             <div class="card border-left-warning shadow h-100 py-2">
                                 <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1 name3">
-                                                Monthly Payment:
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                <span id="monPay"></span>
-                                            </div>
+                                    <div class="row row-cols-1 no-gutters align-items-center">
+                                        <div class="col-md-7">
+                                            <span class="text-warning text-uppercase float-md-start">
+                                                Monthly Payment: 
+                                            </span>                                            
                                         </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-money-bill fa-2x text-gray-300"></i>
+                                        <div class="col-md-3">
+                                            <span id="monPay" class="float-md-end"></span>
+                                        </div>
+                                        <div class="col-md-2 d-none d-md-block">
+                                            <i class="fas fa-money-bill fa-2x text-warning float-md-end"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -201,17 +201,17 @@
                         <div class="col">
                             <div class="card border-left-danger shadow h-100 py-2">
                                 <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1 name3">
+                                    <div class="row row-cols-1 no-gutters align-items-center">
+                                        <div class="col-md-7">
+                                            <span class="text-danger text-uppercase float-md-start">
                                                 Interest Rate:
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                <span id="intRate"></span>
-                                            </div>
+                                            </span>                                            
                                         </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-percentage fa-2x text-gray-300"></i>
+                                        <div class="col-md-3">
+                                            <span id="intRate" class="float-md-end"></span>
+                                        </div>
+                                        <div class="col-md-2 d-none d-md-block">
+                                            <i class="fas fa-percentage fa-2x text-danger float-md-end"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -226,19 +226,17 @@
             <hr>
 
             <!--Row Two-->
-            <div class="row">
+            <div class="row row-cols-1 gy-3 gx-3 mt-1 mb-5">
                 <!-- Area Chart -->
                 <div class="col">
-                    <div class="card shadow mb-4">
-                        <!-- Card Header - Dropdown -->
-                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 font-weight-bold text-primary">
+                    
+                    <div class="card border-left-danger shadow h-100 py-2">
+                        
+                        <div class="card-body">
+                            <h6 class="m-1 p-1 font-weight-bold">
                                 MONTHLY PAYMENT DETAILS
                             </h6>
-                        </div>
-                        <!-- Card Body -->
-                        <div class="card-body">
-                            <div class="chart-area">
+                            <div class="chart-area overflow-scroll">
                                 <table class="table table-light bg-light table-striped" id="result">
                                     <!-- Output will go Here! -->
                                 </table>
@@ -253,7 +251,7 @@
 
 
     <!--Footer Section -->
-    <footer class="footer sticky-footer mt-auto py-3">
+    <footer class="footer sticky-footer mt-auto py-3 d-none d-xl-block">
         <div class="container-fluid">
             <div class="row row-cols-1 row-cols-lg-3 gy-2">
                 <div
@@ -295,9 +293,7 @@
 
     <!-- Javascript -->
     <script src="js/site.js"></script>
-    <script>
-        document.getElementById("btnSubmit").addEventListener("click", displayMessage);
-    </script>
+
 </body>
 
 </html>

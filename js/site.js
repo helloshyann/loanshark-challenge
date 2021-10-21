@@ -1,45 +1,92 @@
-//Mortgage Calculator
-//Step 1 - Get User inputs - this will access the DOM and call all other functions
-function getValues(){
-    let loanAmount = document.getElementById("someId").value;
+// Button Event
+document.getElementById('calc').addEventListener('click', function () {
 
-    let term = document.getElementById("anotherId").value;
+    let verifyBal = Number(document.getElementById('balance').value);
+    let verifyTerm = Number(document.getElementById('term').value);
+    let verifyRate = Number(document.getElementById('rate').value);
 
-    let interestRate = document.getElementById("thirdId").value;
 
-    let calculatedRate = calcRate(interestRate);
+    if (verifyBal == "" || verifyTerm == "" || verifyRate == "" ) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Please fill out all selections before using the calculator.',
+        })
+    }
+    else {
+        calculate();
+    }
+});
 
-    let payment = calcPayment(loanAmount, calculatedRate, term);
+function calculate() {
 
-    let totalPayments = calcPaymentSchedule(loanAmount, calculatedRate, term, payment);
+    // Step 1: Getting the data
+    let bal = Number(document.getElementById("balance").value); 
+    let term = Number(document.getElementById("term").value); 
+    let rate = Number(document.getElementById("rate").value);  
 
-    displayData(totalPayments);
 
-}
+    // Step 2: Run Collected Data
+    let totMonPay = (bal) * (rate / 1200) / (1 - Math.pow((1 + rate / 1200), -term)); 
+    let remBal = bal;                                                 
+    let intPay = remBal * rate / 1200;                               
+    let prinPay = totMonPay - intPay;                                
+    let totIntPay = 0;                                              
+    let accuPay = 0;
 
-//Step 2 - Calculate the interest rate - this is the division by 1200 from the PDF
-function calcRate(){}
+    // Step 3: Result / Outputting to table
+    let template = `<tr>
+        <th>Month</th>
+        <th>Payment</th>
+        <th>Principal</th>
+        <th>Interest</th>
+        <th>Total Interest</th>
+        <th>Balance</th>        
+    </tr>`;
 
-//Step 3 - Calculate monthly payment - Amount times rate divided by the complicated math from the PDF Math.pow()
-function calcPayment(){}
 
-//Step 3.5 - Calculate the interest rate based on the current balance in rate from step 2
-//This function is called in Step 4, but you need to build it first
-//Calculates interest per payment
-function calcInterest(){}
+    // Loop will dynamically fill the table based on how many months the interest is
+    // i = starting month
 
-//Step 4 - Now that we know the rate and monthly payment we build out our payment schedule
-//This is the big function of the application - create your object in this function
-//let obj = {
-//     month:
-//     payment:
-//     principal:
-//     interest:
-//     totalInterest:
-//     balance:
-// }
-function calcPaymentSchedule(){}
+    for (let i = 1; i <= term; i++) {
 
-//Step 5 - Display all of the calculated information
-//Use the template structure from FizzBuzz to output your data
-function displayData(){}
+        totIntPay += intPay;                        
+        prinPay = totMonPay - intPay;                
+        remBal = remBal - prinPay;                  
+        intPay = remBal * rate / 1200;              
+        accuPay += totMonPay;
+
+
+
+
+        //How result will be formatted as loop continues 
+        template += `<tr>
+        <td>${i}</td>
+        <td>${totMonPay.toFixed(2)}</td>
+        <td>${prinPay.toFixed(2)}</td>
+        <td>${intPay.toFixed(2)}</td>
+        <td>${totIntPay.toFixed(2)}</td>
+        <td>${remBal.toFixed(2)}</td>
+    </tr>`
+    };
+
+    //Puts into HTML
+    document.getElementById("result").innerHTML = template;
+    document.getElementById("termMon").innerHTML = `${term} months`
+    document.getElementById("totBal").innerHTML = `$${bal}`
+    document.getElementById("monPay").innerHTML = `$${totMonPay.toFixed(2)}`;
+    document.getElementById("intRate").innerHTML = `${rate}%`
+
+
+};
+
+// function prevents input of all letters into input field
+function isNumber(evt) {                                     
+    evt = (evt) ? evt : window.event;                        
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode > 31 && (charCode < 46) || (charCode > 46 && (charCode < 48) || charCode > 57)) {
+        return false;
+    }
+    return true;
+};
+

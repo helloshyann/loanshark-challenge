@@ -83,24 +83,67 @@
             <div class="row row-cols-1 gx-5">
                 <!-- Code Accordion 1-->
                 <div class="col col-md-8">                   
-                    <h2 class="fw-bolder mb-3">JavaScript, HTML, & CSS</h2>
+                    <h2 class="fw-bolder mb-3">JavaScript Functions</h2>
                     <div class="accordion mb-5" id="accordionExample">
                         <div class="accordion-item">
-                            <h3 class="accordion-header" id="headingOne"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">JavaScript</button></h3>
+                            <h3 class="accordion-header" id="headingOne"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">function calculate()</button></h3>
                             <div class="accordion-collapse collapse show" id="collapseOne" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
                                     
                                     <pre class="line-numbers">
                                         <code class="language-javascript">
-                                            //Get starting values from the DOM
-                                            //Controller function
-                                            function displayMessage(){
-                                                let msg = "";
                                             
-                                                msg = document.getElementById("message").value;
+                                            function calculate() {
+
+                                                // Step 1: Getting the data
+                                                let bal = Number(document.getElementById("balance").value); 
+                                                let term = Number(document.getElementById("term").value); 
+                                                let rate = Number(document.getElementById("rate").value);  
                                             
-                                                Swal.fire(msg);
-                                            }
+                                            
+                                                // Step 2: Run Collected Data
+                                                let totMonPay = (bal) * (rate / 1200) / (1 - Math.pow((1 + rate / 1200), -term)); 
+                                                let remBal = bal;                                                 
+                                                let intPay = remBal * rate / 1200;                               
+                                                let prinPay = totMonPay - intPay;                                
+                                                let totIntPay = 0;                                              
+                                                let accuPay = 0;
+                                            
+                                                // Step 3: Result / Outputting to table
+                                                let template = `<tr>
+                                                    <th>Month</th>
+                                                    <th>Payment</th>
+                                                    <th>Principal</th>
+                                                    <th>Interest</th>
+                                                    <th>Total Interest</th>
+                                                    <th>Balance</th>        
+                                                </tr>`;
+                                                                                        
+                                                for (let i = 1; i <= term; i++) {
+                                            
+                                                    totIntPay += intPay;                        
+                                                    prinPay = totMonPay - intPay;                
+                                                    remBal = remBal - prinPay;                  
+                                                    intPay = remBal * rate / 1200;              
+                                                    accuPay += totMonPay;
+
+                                                    //How result will be formatted as loop continues 
+                                                    template += `<tr>
+                                                    <td>${i}</td>
+                                                    <td>${totMonPay.toFixed(2)}</td>
+                                                    <td>${prinPay.toFixed(2)}</td>
+                                                    <td>${intPay.toFixed(2)}</td>
+                                                    <td>${totIntPay.toFixed(2)}</td>
+                                                    <td>${remBal.toFixed(2)}</td>
+                                                </tr>`
+                                                };
+
+                                                document.getElementById("result").innerHTML = template;
+                                                document.getElementById("termMon").innerHTML = `${term} months`
+                                                document.getElementById("totBal").innerHTML = `$${bal}`
+                                                document.getElementById("monPay").innerHTML = `$${totMonPay.toFixed(2)}`;
+                                                document.getElementById("intRate").innerHTML = `${rate}%`
+                                            };
                                             
                                         </code>
                                     </pre>
@@ -109,21 +152,21 @@
                             </div>
                         </div>
                         <div class="accordion-item">
-                            <h3 class="accordion-header" id="headingTwo"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">HTML 5</button></h3>
+                            <h3 class="accordion-header" id="headingTwo"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">function isNumber()</button></h3>
                             <div class="accordion-collapse collapse" id="collapseTwo" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
                                     
                                     <pre class="line-numbers">
                                         <code class="language-javascript">
-                                            //Get starting values from the DOM
-                                            //Controller function
-                                            function displayMessage(){
-                                                let msg = "";
                                             
-                                                msg = document.getElementById("message").value;
-                                            
-                                                Swal.fire(msg);
-                                            }
+                                            function isNumber(evt) {                                     
+                                                evt = (evt) ? evt : window.event;                        
+                                                var charCode = (evt.which) ? evt.which : evt.keyCode;
+                                                if (charCode > 31 && (charCode < 46) || (charCode > 46 && (charCode < 48) || charCode > 57)) {
+                                                    return false;
+                                                }
+                                                return true;
+                                            };
                                             
                                         </code>
                                     </pre>
@@ -132,22 +175,31 @@
                             </div>
                         </div>
                         <div class="accordion-item">
-                            <h3 class="accordion-header" id="headingThree"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">CSS 3</button></h3>
+                            <h3 class="accordion-header" id="headingThree"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Button Event</button></h3>
                             <div class="accordion-collapse collapse" id="collapseThree" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
                                     
                                     <pre class="line-numbers">
                                         <code class="language-javascript">
-                                            //Get starting values from the DOM
-                                            //Controller function
-                                            function displayMessage(){
-                                                let msg = "";
-                                            
-                                                msg = document.getElementById("message").value;
-                                            
-                                                Swal.fire(msg);
-                                            }
-                                            
+                                            // Button Event
+document.getElementById('calc').addEventListener('click', function () {
+
+    let verifyBal = Number(document.getElementById('balance').value);
+    let verifyTerm = Number(document.getElementById('term').value);
+    let verifyRate = Number(document.getElementById('rate').value);
+
+
+    if (verifyBal == "" || verifyTerm == "" || verifyRate == "" ) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Please fill out all selections before using the calculator.',
+        })
+    }
+    else {
+        calculate();
+    }
+});
                                         </code>
                                     </pre>
 
@@ -163,9 +215,13 @@
                                 <div class="text-center">
                                     <div class="h6">Have more questions?</div>
                                     <p class="mb-4">
-                                        
+                                        Get in touch through my website!
                                     </p>
-                                    <div class="h6">Contact Me!</div>
+                                    <div class="d-flex justify-content-center">
+                                        <a type="button" href="https://helloshyann.com/#contact" target="_blank" class="btn hvr-pulse-grow btn-outline-dark">
+                                            Contact Me
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
